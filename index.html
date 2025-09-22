@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YOUR MONJALI GUIDE — Self Guide</title>
+  <style>
+    :root{
+      --bg:#f7efd0; /* light cream */
+      --accent:#f0a43b; /* orangey button */
+      --text:#0f4f4f; /* deep teal */
+      --muted:rgba(15,79,79,0.85);
+      --card-radius:24px;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--text)}
+    .app{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:28px 18px 48px}
+
+    /* header */
+    .brand{margin-top:6px;text-align:center}
+    .title{font-weight:800;font-size:44px;letter-spacing:1px}
+    .subtitle{font-weight:600;opacity:.85;margin-top:4px;font-size:14px}
+
+    /* prolog card */
+    .prolog{background:var(--accent);color:var(--text);padding:22px;border-radius:22px;max-width:920px;width:100%;margin:22px 0;box-shadow:0 6px 18px rgba(15,79,79,0.06);text-align:center}
+    .prolog p{margin:8px 0;font-size:16px;line-height:1.45}
+
+    /* buttons */
+    .btns{max-width:720px;width:100%;display:flex;flex-direction:column;gap:18px}
+    .btn{background:var(--accent);padding:26px;border-radius:28px;text-align:center;font-size:28px;font-weight:800;color:var(--text);cursor:pointer;border:none}
+    .btn:active{transform:translateY(1px)}
+
+    /* content panel */
+    .panel{margin-top:22px;max-width:920px;width:100%;background:rgba(255,255,255,0.92);border-radius:18px;padding:18px;box-shadow:0 6px 18px rgba(15,79,79,0.06);display:none}
+    .panel.active{display:block}
+    .panel h3{margin:6px 0 12px;font-size:20px}
+    .panel .desc{font-size:15px;line-height:1.6;color:var(--muted)}
+    .panel .list{margin:12px 0 18px;padding-left:18px;color:var(--muted)}
+
+    /* audio controls */
+    .audio-row{display:flex;gap:12px;align-items:center;margin-top:10px}
+    audio{width:100%;max-width:520px}
+
+    /* navigation panel */
+.nav-panel {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-btn {
+  background: var(--accent);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.nav-btn:active {
+  transform: translateY(1px);
+}
+    @media (max-width:420px){
+      .title{font-size:34px}
+      .btn{font-size:22px;padding:20px}
+      .prolog p{font-size:15px}
+    }
+  </style>
+</head>
+<body>
+  <div class="app" role="main">
+
+    <header class="brand">
+      <div class="title">YOUR MONJALI GUIDE</div>
+      <div class="subtitle">Jogja Kembali Monument Self Guide</div>
+    </header>
+
+    <section class="prolog" id="prolog">
+      <p style="font-weight:700;font-size:18px;margin-bottom:6px">Welcome to Monjali Museum!</p>
+      <p>This page will guide you. Follow the arrows from Museum 1 to 4. 
+        After Museum 4, exit through the East Door in front of the Tugu miniature. 
+        Turn right twice along the pond, then go up the big stairs to the 2nd and 3rd floors. 
+        Click a button to see text or listen to audio. Enjoy your tour!</p>
+      
+      <!-- Tombol Play Welcome Audio -->
+  <button class="btn" id="playWelcome">▶ Play Welcome Audio</button>
+
+  <!-- Audio awalnya disembunyikan -->
+  <div class="audio-row" id="welcomeAudioRow" style="display:none; margin-top:12px;">
+    <audio id="welcomeAudio" src="audio/welcome.mp3" controls></audio>
+  </div>
+</section>
+
+    <script>
+  const playBtn = document.getElementById("playWelcome");
+  const welcomeAudio = document.getElementById("welcomeAudio");
+
+  playBtn.addEventListener("click", () => {
+    // kalau belum ditampilkan, munculkan player
+    if (welcomeAudio.style.display === "none") {
+      welcomeAudio.style.display = "block";
+    }
+    // mainkan audio
+    welcomeAudio.play().catch(err => console.log("Audio error:", err));
+  });
+</script>
+
+    <nav class="btns" aria-label="Floor navigation">
+      <button class="btn" data-target="floor1">1st Floor</button>
+      <button class="btn" data-target="floor2">2nd Floor</button>
+      <button class="btn" data-target="floor3">3rd Floor</button>
+    </nav>
+
+    <!-- content panels -->
+    <article id="floor1" class="panel" aria-hidden="true">
+      <h3>1st Floor — Museums 1 to 4</h3>
+      <img src="images/floor1.jpg.jpg" alt="Pameran di lantai 1 Monjali" style="width:100%;border-radius:12px;margin-bottom:12px">
+      <div class="desc">Follow the arrows on the floor from Museum 1 to Museum 4. Below are short guides and audio for each museum. Tap play to hear the audio.</div>
+
+      <div class="list">
+        <strong>Museum I — Proclamation 1945</strong>
+        <ul>
+          <li>Replica of the proclamation microphone (17 Aug 1945)</li>
+          <li>Weapons: bamboo spears, captured guns, wasp nests</li>
+          <li>Soldier statues and messenger pigeons</li>
+        </ul>
+      <div class="audio-row">
+    <audio controls src="audio/museum1.mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+</div>
+
+      <div class="list">
+        <strong>Museum II — Guerrilla War</strong>
+        <ul>
+          <li>Old telephones and walkie-talkies</li>
+          <li>Sewing machine for uniforms; guerrilla route map</li>
+          <li>Original stretcher of General Soedirman</li>
+        </ul>
+      <div class="audio-row">
+    <audio controls src="audio/museum2.mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+</div>
+
+      <div class="list">
+        <strong>Museum III — March 1, 1949</strong>
+        <ul>
+          <li>Community kitchen and Red Cross post</li>
+          <li>Simplex bicycle of Lieutenant Marsoedi</li>
+          <li>Bullet-pierced helmet of Soepanoto</li>
+        </ul>
+      <div class="audio-row">
+    <audio controls src="audio/museum3.mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+</div>
+
+      <div class="list">
+        <strong>Museum IV — Yogyakarta as Capital</strong>
+        <ul>
+          <li>Bed of President Soekarno</li>
+          <li>Desk of Sultan Hamengku Buwono IX</li>
+          <li>Duplicate national flag (since 1969)</li>
+        </ul>
+      <div class="audio-row">
+    <audio controls src="audio/museum4.mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+</div>
+<div class="nav-panel">
+  <button class="nav-btn" data-target="floor2">Next ➡</button>
+</div>
+
+    </article>
+
+    <article id="floor2" class="panel" aria-hidden="true">
+      <h3>2nd Floor — Reliefs & Dioramas</h3>
+      <img src="images/floor2.jpg.jpg" alt="Pameran di lantai 1 Monjali" style="width:100%;border-radius:12px;margin-bottom:12px">
+      <div class="desc">Outside there are 40 reliefs that tell many stories. Inside there are 10 dioramas showing key events: Dutch Military Aggression II, Guerrilla War, March 1st Attack, Roem–Royen Agreement, and the 4th Independence Day celebration.</div>
+      <div class="audio-row">
+        <audio controls src="audio/floor2.mp3">Your browser does not support the audio element.</audio>
+      </div>
+      <div class="nav-panel">
+    <!-- Floor 2 ada Back & Next -->
+    <button class="nav-btn" data-target="floor1">⬅ Back</button>
+    <button class="nav-btn" data-target="floor3">Next ➡</button>
+  </div>
+    </article>
+
+    <article id="floor3" class="panel" aria-hidden="true">
+      <h3>3rd Floor — Garba Graha Room</h3>
+      <img src="images/floor3.jpg" alt="Pameran di lantai 1 Monjali" style="width:100%;border-radius:12px;margin-bottom:12px">
+      <div class="desc">This room is called Garba Graha. It is a quiet, sacred space to pray and honor the heroes. Please keep silent and respectful here.</div>
+      <div class="audio-row">
+        <audio controls src="audio/floor3.mp3">Your browser does not support the audio element.</audio>
+      </div>
+      <div class="nav-panel">
+    <!-- Floor 3 hanya punya Back -->
+    <button class="nav-btn" data-target="prolog">⬅ Back</button>
+  </div>
+    </article>
+
+  </div>
+
+<script src="script.js"></script>
+<script>
+  document.querySelectorAll(".nav-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.getAttribute("data-target");
+      // sembunyikan semua panel
+      document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+      // tampilkan panel target
+      document.getElementById(targetId).classList.add("active");
+      // scroll ke atas
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+</script>
+
+</body>
+</html>
